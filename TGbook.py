@@ -151,7 +151,7 @@ def show_class_performance():
 
     # Plot the average CGPA
     bars = avg_cgpa.plot(
-        kind="bar", x="Semester", y="Average CGPA", ax=ax, color="aqua", legend=False
+        kind="bar", x="Semester", y="Average CGPA", ax=ax, color="lime", legend=False
     )
 
     # Add values on top of the bars
