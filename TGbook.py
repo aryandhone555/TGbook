@@ -7,6 +7,7 @@ from fpdf import FPDF
 import base64
 from streamlit import selectbox
 from io import BytesIO
+import tempfile
 
 # Set the app to wide mode
 st.set_page_config(layout="wide")
@@ -369,10 +370,7 @@ def show_student_performance():
     if st.button("Back to Home"):
         st.session_state.page = "home"
 
-
 # Function to download performance details as PDF
-
-
 def download_pdf(student_data):
     pdf = FPDF()
     pdf.add_page()
@@ -389,11 +387,9 @@ def download_pdf(student_data):
     y2 = y1  # Y-coordinate of the end point (same as start point for a horizontal line)
     pdf.line(x1, y1, x2, y2)
 
-    # a1 = 10  # X-coordinate of the start point
     b1 = (
         pdf.get_y() + 275
     )  # Y-coordinate of the start point (current position + offset)
-    # a2 = 200  # X-coordinate of the end point
     b2 = b1  # Y-coordinate of the end point (same as start point for a horizontal line)
     pdf.line(x1, b1, x2, b2)
 
@@ -460,22 +456,18 @@ def download_pdf(student_data):
             ha="center",
         )
 
-    # Save the plot to a BytesIO object
-    buffer = BytesIO()
-    plt.savefig(buffer, format="png")
+    # Save the plot to a temporary file
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmpfile:
+        plt.savefig(tmpfile, format="png")
+        tmpfile_path = tmpfile.name
     plt.close(fig)
-    buffer.seek(0)
 
     # Embed the image into the PDF
-    pdf.image(BytesIO(buffer.getvalue()), x=10, y=pdf.get_y(), w=180)
+    pdf.image(tmpfile_path, x=10, y=pdf.get_y(), w=180)
 
-    #custom fonts
-    pdf.add_font('ar', '', 'RobotoMono-SemiBold.ttf', uni=True)
-
-    
     # Add the hyperlink below the graph
     pdf.set_y(pdf.get_y() + 142)  # Adjust the Y position to below the image
-    pdf.set_font("ar", "", 8)
+    pdf.set_font("Arial", size=8)
     link = "https://www.linkedin.com/in/aryandhone555"
     text = "Created on TG_BOOK | by ARYAN"
     pdf.set_text_color(0, 0, 0)
@@ -487,7 +479,19 @@ def download_pdf(student_data):
     pdf.output(pdf_bytes)
     pdf_bytes.seek(0)
 
+    # Clean up the temporary file
+    os.remove(tmpfile_path)
+
     return pdf_bytes
+
+# function to generate link
+def get_binary_file_downloader_html(bin_file, file_label="File", btn_label="Download"):
+    """
+    Generates a link to download a binary file.
+    """
+    b64 = base64.b64encode(bin_file.getvalue()).decode()
+    href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_label}">{btn_label}</a>'
+    return href
 
 
 # function to generate link
