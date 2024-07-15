@@ -371,6 +371,13 @@ def show_student_performance():
         st.session_state.page = "home"
 
 # Function to download performance details as PDF
+from fpdf import FPDF
+from io import BytesIO
+import pandas as pd
+import matplotlib.pyplot as plt
+import tempfile
+import os
+
 def download_pdf(student_data):
     pdf = FPDF()
     pdf.add_page()
@@ -403,7 +410,7 @@ def download_pdf(student_data):
     pdf.ln(5)
 
     # Add data rows
-    pdf.set_text_color(252, 252, 252)  # Black
+    pdf.set_text_color(0, 0, 0)  # Black
     pdf.set_font("Arial", size=12, style="I")
     fields = [
         ("Student Name:", str(student_data["Name of students"])),
@@ -483,6 +490,8 @@ def download_pdf(student_data):
     os.remove(tmpfile_path)
 
     return pdf_bytes
+
+
 
 
 # function to generate link
