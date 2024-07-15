@@ -151,7 +151,7 @@ def show_class_performance():
 
     # Plot the average CGPA
     bars = avg_cgpa.plot(
-        kind="bar", x="Semester", y="Average CGPA", ax=ax, color="lime", legend=False
+        kind="bar", x="Semester", y="Average CGPA", ax=ax, color="aqua", legend=False
     )
 
     # Add values on top of the bars
@@ -371,6 +371,7 @@ def show_student_performance():
         st.session_state.page = "home"
 
 # Function to download performance details as PDF
+
 from fpdf import FPDF
 from io import BytesIO
 import pandas as pd
@@ -484,7 +485,6 @@ def download_pdf(student_data):
     # Save PDF to a BytesIO object
     pdf_bytes = BytesIO()
     pdf.output(pdf_bytes)
-    pdf_bytes.seek(0)
 
     # Clean up the temporary file
     os.remove(tmpfile_path)
