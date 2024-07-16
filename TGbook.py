@@ -12,9 +12,25 @@ import tempfile
 # Set the app to wide mode
 st.set_page_config(layout="wide")
 
+# Function to inject custom CSS for gradient background
+def inject_css():
+    st.markdown(
+        """
+        <style>
+        .main {
+            background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+            padding: 20px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 
 # Function to display the start page with clickable cards
 def show_start_page():
+    inject_css()  # Inject the CSS for the gradient background
     st.title("TG Book 📊💻")
     st.write(
         "Welcome to the TG Book Dashboard. Click on the sections below to view details:"
