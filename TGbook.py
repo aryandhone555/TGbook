@@ -18,7 +18,7 @@ def inject_css():
         """
         <style>
         .main {
-            background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+            background: linear-gradient(120deg,#478CCF, #36C2CE, #77E4C8 );
             padding: 20px;
         }
         </style>
@@ -72,6 +72,7 @@ def show_start_page():
 
 # Function to display the Notes page
 def show_notes():
+    inject_css()
     st.header("Notes Editor")
 
     # Create or verify the Notes folder
@@ -132,6 +133,7 @@ def show_notes():
 
 # Function to display the Time Table page
 def show_time_table():
+    inject_css()
     st.header("Time Table")
     timetable_image_path = "timetable_image.jpg"  # Path to your timetable image
     timetable_image = open(timetable_image_path, "rb").read()
@@ -142,6 +144,7 @@ def show_time_table():
 
 # Function to display the Class Performance page
 def show_class_performance():
+    inject_css()
     st.header("Class Performance")
 
     # Load the data
@@ -269,6 +272,7 @@ def show_class_performance():
 
 # Function to display the Student Performance page
 def show_student_performance():
+    inject_css()
     st.header("Student Performance")
 
     # Load the data
