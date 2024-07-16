@@ -529,15 +529,6 @@ def get_binary_file_downloader_html(bin_file, file_label="File", btn_label="Down
     return href
 
 
-# function to generate link
-def get_binary_file_downloader_html(bin_file, file_label="File", btn_label="Download"):
-    """
-    Generates a link to download a binary file.
-    """
-    b64 = base64.b64encode(bin_file.getvalue()).decode()
-    href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_label}">{btn_label}</a>'
-    return href
-
 
 # Main function to control navigation
 def main():
