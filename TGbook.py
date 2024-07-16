@@ -50,6 +50,7 @@ def show_start_page():
         button_clicked = st.button(label, key=page_name)
         if button_clicked:
             st.session_state.page = page_name.lower().replace(" ", "_")
+            st.experimental_rerun()
 
     # Display styled buttons in columns
     with col1:
@@ -129,6 +130,7 @@ def show_notes():
     # Back to home button
     if st.button("Back to Home"):
         st.session_state.page = "home"
+        st.experimental_rerun()
 
 
 # Function to display the Time Table page
@@ -140,6 +142,7 @@ def show_time_table():
     st.image(timetable_image, use_column_width=True)
     if st.button("Back to Home"):
         st.session_state.page = "home"
+        st.experimental_rerun()
 
 
 # Function to display the Class Performance page
@@ -268,6 +271,7 @@ def show_class_performance():
     # Back to home button
     if st.button("Back to Home"):
         st.session_state.page = "home"
+        st.experimental_rerun()
 
 
 # Function to display the Student Performance page
@@ -389,6 +393,7 @@ def show_student_performance():
     # Back to home button
     if st.button("Back to Home"):
         st.session_state.page = "home"
+        st.experimental_rerun()
 
 # Function to download performance details as PDF
 
