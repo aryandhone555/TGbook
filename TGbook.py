@@ -50,7 +50,7 @@ def show_start_page():
         button_clicked = st.button(label, key=page_name)
         if button_clicked:
             st.session_state.page = page_name.lower().replace(" ", "_")
-            st.experimental_rerun()
+            
 
     # Display styled buttons in columns
     with col1:
@@ -94,13 +94,13 @@ def show_notes():
                     f.write(new_note)
                 st.success("Note saved successfully.")
                 st.session_state.new_note = ""  # Clear the text editor
-                st.experimental_rerun()  # Refresh the page to show the new note
+                ###st.experimental_rerun()  # Refresh the page to show the new note
             else:
                 st.error("Note content is empty.")
     with col2:
         if st.button("Clear Note"):
             st.session_state.new_note = ""
-            st.experimental_rerun()  # Refresh the page to clear the text editor
+            ###st.experimental_rerun()  # Refresh the page to clear the text editor
 
     # List all existing notes sorted by time and date
     notes_files = sorted(
@@ -125,12 +125,12 @@ def show_notes():
         if delete_button:
             os.remove(note_file_path)
             st.success(f"Note {note_file} deleted successfully.")
-            st.experimental_rerun()  # Refresh the page to update the notes list
+            ###st.experimental_rerun()  # Refresh the page to update the notes list
 
     # Back to home button
     if st.button("Back to Home"):
         st.session_state.page = "home"
-        st.experimental_rerun()
+        ###st.experimental_rerun()
 
 
 # Function to display the Time Table page
@@ -142,7 +142,7 @@ def show_time_table():
     st.image(timetable_image, use_column_width=True)
     if st.button("Back to Home"):
         st.session_state.page = "home"
-        st.experimental_rerun()
+        ###st.experimental_rerun()
 
 
 # Function to display the Class Performance page
@@ -271,7 +271,7 @@ def show_class_performance():
     # Back to home button
     if st.button("Back to Home"):
         st.session_state.page = "home"
-        st.experimental_rerun()
+        ##st.experimental_rerun()
 
 
 # Function to display the Student Performance page
@@ -393,7 +393,7 @@ def show_student_performance():
     # Back to home button
     if st.button("Back to Home"):
         st.session_state.page = "home"
-        st.experimental_rerun()
+        ##st.experimental_rerun()
 
 # Function to download performance details as PDF
 
@@ -528,6 +528,15 @@ def get_binary_file_downloader_html(bin_file, file_label="File", btn_label="Down
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_label}">{btn_label}</a>'
     return href
 
+
+# function to generate link
+def get_binary_file_downloader_html(bin_file, file_label="File", btn_label="Download"):
+    """
+    Generates a link to download a binary file.
+    """
+    b64 = base64.b64encode(bin_file.getvalue()).decode()
+    href = f'<a href="data:application/octet-stream;base64,{b64}" download="{file_label}">{btn_label}</a>'
+    return href
 
 
 # Main function to control navigation
