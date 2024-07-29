@@ -18,7 +18,7 @@ def inject_css():
         """
         <style>
         .main {
-            background: blurred-gradient(#D3F3EF,#9FE7F5, #D39FF5,#FC7ECC );
+            background: linear-gradient(80Deg,#D3F3EF,#9FE7F5, #D39FF5,#FC7ECC );
             padding: 20px;
         }
         </style>
