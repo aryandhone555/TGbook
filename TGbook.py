@@ -18,7 +18,7 @@ def inject_css():
         """
         <style>
         .main {
-            background: linear-gradient(120deg,#478CCF, #36C2CE, #77E4C8 );
+            background: linear-gradient(120deg,#C3E7F0,#DB80C8 , #F2189F );
             padding: 20px;
         }
         </style>
