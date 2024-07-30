@@ -453,7 +453,7 @@ def download_pdf(student_data):
     for field, value in fields:
         pdf.cell(60, 10, txt=field, border=1, ln=0, align="L", fill=True)
         pdf.cell(130, 10, txt=value, border=1, ln=1, align="C", fill=True)
-
+"""
     pdf.ln(10)  # Add some space after the table
 
     # Generate line graph as an image
@@ -497,6 +497,7 @@ def download_pdf(student_data):
 
     # Embed the image into the PDF
     pdf.image(tmpfile_path, x=10, y=pdf.get_y(), w=180)
+    """
 
     # Add the hyperlink below the graph
     pdf.set_y(pdf.get_y() + 142)  # Adjust the Y position to below the image
